@@ -1,0 +1,22 @@
+[alias]
+	tree = log --graph --all --format=\"%x09%C(cyan)%h%Creset%x09%C(green bold)%an%Creset %C(magenta bold)%d%Creset %s\"
+	cho = checkout
+	st = status
+	br = branch
+	co = commit
+[core]
+	autoCRLF = false
+	quotepath = false
+[merge]
+	ff = false
+[pull]
+	ff = only
+[difftool "sourcetree"]
+	cmd = '' \"$LOCAL\" \"$REMOTE\"
+[mergetool "sourcetree"]
+	cmd = "'' "
+	trustExitCode = true
+# https://zenn.dev/link/comments/40b1e378d36b5b
+[user]
+	email = 18499975+para7@users.noreply.github.com
+	name = para7
