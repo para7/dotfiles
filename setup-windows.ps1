@@ -35,4 +35,20 @@ Get-ChildItem -Path $repoDir -Force |
     Write-Host "Linked: $dest -> $src"
   }
 
+$gitConfigSrc = Join-Path $repoDir ".gitconfig.windows"
+$gitConfigDest = Join-Path $env:USERPROFILE ".gitconfig"
+
+if (Test-Path -LiteralPath $gitConfigDest) {
+  $item = Get-Item -LiteralPath $gitConfigDest -Force
+  if ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) {
+    Remove-Item -LiteralPath $gitConfigDest -Force
+  } else {
+    throw "Real file or directory already exists at $gitConfigDest"
+  }
+}
+
+$itemType = if (Test-Path -LiteralPath $gitConfigSrc -PathType Container) { "Junction" } else { "SymbolicLink" }
+New-Item -ItemType $itemType -Path $gitConfigDest -Target $gitConfigSrc | Out-Null
+Write-Host "Linked: $gitConfigDest -> $gitConfigSrc"
+
 Write-Host "Done."

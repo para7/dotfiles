@@ -1,0 +1,45 @@
+[alias]
+	tree = log --graph --all --format=\"%x09%C(cyan)%h%Creset%x09%C(green bold)%an%Creset %C(magenta bold)%d%Creset %s\"
+	cho = checkout
+	st = status
+	br = branch
+	co = commit
+	t = log --graph --all --format=\"%x09%C(cyan)%h%Creset%x09%C(green bold)%an%Creset %C(magenta bold)%d%Creset %s\" -10
+	ad = !git add . && git diff --staged
+	save = !git add . && git commit -m "save"
+
+[core]
+	autoCRLF = false
+	quotepath = false
+	editor = vim
+
+[merge]
+	ff = false
+
+[pull]
+	ff = only
+
+[push]
+	default = current
+
+[difftool "sourcetree"]
+	cmd = '' \"$LOCAL\" \"$REMOTE\"
+
+[mergetool "sourcetree"]
+	cmd = "'' "
+	trustExitCode = true
+
+[user]
+	email = 18499975+para7@users.noreply.github.com
+	name = para7
+
+[credential]
+	helper = cache --timeout=3600
+
+[credential "https://github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
